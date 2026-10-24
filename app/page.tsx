@@ -231,7 +231,8 @@ fetch("https://",{
   ];
 
 useEffect(()=>{
-  setPassId(`${Math.floor(100000 + Math.random() * 900000)}`)
+  const tm = new Date();
+  setPassId(`BB-PASS-${tm.getDay()}${tm.getHours()}${tm.getMinutes()}${tm.getMilliseconds()}`)
 },[])
 
   return (
@@ -780,7 +781,7 @@ useEffect(()=>{
                 className="w-44 h-44 mx-auto rounded-lg shadow-sm"
               />
               <p className="font-mono text-[11px] font-bold text-[#1a2012] mt-3 tracking-wider">
-                PASS-{passId}
+                {passId}
               </p>
             </div>
 
