@@ -16,6 +16,8 @@ interface FormData {
   attending: 'attending' | 'absent' | 'undecided';
   guestCount: 'couple' | 'family' | 'friend';
   mobile:string;
+  firstName:string;
+  lastName:string;
 }
 
 // Interfaces for Countdown Timer
@@ -53,7 +55,9 @@ export default function App(): React.JSX.Element {
     name: '',
     attending: 'attending',
     guestCount: 'couple',
-    mobile:''
+    mobile:'',
+    firstName:'',
+    lastName:''
   });
 
   // Photo Gallery / Snap Gallery State
@@ -219,13 +223,9 @@ const addToCalendar = (): void => {
   const handleRsvpSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setLoading(true);
-    // if(formData.mobile.test())
-    // {
-
-    // }
     fetch("https://api.propfindaplus.com/v1.0/bridget-brown",{
       method:"POST",
-      body: JSON.stringify({...formData,mobile:`${dialCode}${parseInt(formData.mobile)}`}),
+      body: JSON.stringify({...formData,mobile:`${dialCode}${parseInt(formData.mobile)}`,name:`${formData.firstName} ${formData.lastName}`}),
       headers: {
       "Content-Type": "application/json",
       }
@@ -287,6 +287,15 @@ useEffect(()=>{
   setPassId(bbPass);
 },[])
 
+function formatName(input:string) {
+  if (typeof input !== 'string') return '';
+  return input
+    .replace(/[^\p{L}\s]/gu, '')   // remove anything that's not a letter or whitespace
+    .trim()
+    .replace(/\s+/g, ' ')          // collapse whitespace to a single space
+    .toLowerCase()
+    .replace(/\p{L}+/gu, w => w[0].toUpperCase() + w.slice(1));
+}
 
   return (
     <div className="font-sans bg-[#fdfbf7] text-slate-800 antialiased selection:bg-[#6b7a4a] selection:text-white min-h-screen">
@@ -698,14 +707,26 @@ useEffect(()=>{
             onSubmit={handleRsvpSubmit} 
             className="space-y-6">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">First and last name *</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">First name *</label>
                 <input 
                   type="text" 
                   required 
-                  placeholder="e.g. John Doe"
-                  value={formData.name}
+                  placeholder="e.g. John"
+                  value={formData.firstName}
                   maxLength={40}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, name: e.target.value})}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, firstName: formatName(e.target.value)})}
+                  className="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:outline-none focus:border-[#6b7a4a] focus:ring-1 focus:ring-[#6b7a4a] transition-all text-sm" 
+                />
+              </div>
+               <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">Last name *</label>
+                <input 
+                  type="text" 
+                  required 
+                  placeholder="e.g. Doe"
+                  value={formData.lastName}
+                  maxLength={40}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, lastName: formatName(e.target.value)})}
                   className="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:outline-none focus:border-[#6b7a4a] focus:ring-1 focus:ring-[#6b7a4a] transition-all text-sm" 
                 />
               </div>
