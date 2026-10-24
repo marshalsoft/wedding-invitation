@@ -221,7 +221,20 @@ fetch("https://",{
   const handleRsvpSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setRsvpSubmitted(true);
-    setShowQrModal(true);
+    fetch("https://api.propfindaplus.com/v1.0/bridget-brown",{
+      method:"POST",
+      body: JSON.stringify(formData),
+      headers: {
+      "Content-Type": "application/json",
+      }
+    }).then((res)=>res.json()).then((res)=>{
+        setRsvpSubmitted(false);
+        if(res.status && res?.data?.passId)
+        {
+          setPassId(res?.data?.passId);
+          setShowQrModal(true);
+        }
+    })
   };
 
   const rsvpContacts: Contact[] = [
@@ -660,8 +673,7 @@ useEffect(()=>{
                 <div className="space-y-3">
                   {[
                     { value: 'attending', label: 'I will be at the wedding party.' },
-                    { value: 'absent', label: 'I will be Unavoidably Absent (I have sent my gift).' },
-                    { value: 'undecided', label: 'I have not decided yet.' }
+                    { value: 'absent', label: 'I will be Unavoidably Absent (I have sent my gift).' }
                   ].map((option) => (
                     <label key={option.value} className="flex items-center p-3.5 border border-slate-200 rounded-xl hover:bg-[#f6f7f2] cursor-pointer transition-colors text-sm">
                       <input 
@@ -808,16 +820,16 @@ useEffect(()=>{
             <div className="flex flex-col gap-2">
               <button 
                 onClick={() => {
-                  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(
-                    `GATE-PASS:${formData.name || 'GUEST'}|ATTENDING:${formData.attending}|GUESTS:${formData.guestCount}|WEDDING:Bridget&Brown-2026`
-                  )}`;
-                  const link = document.createElement('a');
-                  link.href = qrUrl;
-                  link.download = `Gate_Access_Pass_${(formData.name || 'Guest').replace(/\s+/g, '_')}.png`;
-                  link.target = '_blank';
-                  document.body.appendChild(link);
-                  link.click();
-                  document.body.removeChild(link);
+                  // const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(
+                  //   `GATE-PASS:${formData.name || 'GUEST'}|ATTENDING:${formData.attending}|GUESTS:${formData.guestCount}|WEDDING:Bridget&Brown-2026`
+                  // )}`;
+                  // const link = document.createElement('a');
+                  // link.href = qrUrl;
+                  // link.download = `Gate_Access_Pass_${(formData.name || 'Guest').replace(/\s+/g, '_')}.png`;
+                  // link.target = '_blank';
+                  // document.body.appendChild(link);
+                  // link.click();
+                  // document.body.removeChild(link);
                 }}
                 className="w-full py-3 bg-[#3d472a] hover:bg-[#1a2012] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
               >
