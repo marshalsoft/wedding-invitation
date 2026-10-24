@@ -234,6 +234,8 @@ const [loading,setLoading] = useState<boolean>(false);
           setRsvpSubmitted(true);
           setPassId(res?.data?.passId);
           setShowQrModal(true);
+        }else{
+          alert(res.message);
         }
     })
   };
