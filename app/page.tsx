@@ -841,8 +841,8 @@ function formatName(input:string) {
           href='https://www.facebook.com/marshalsoft'
           className="text-xs text-stone-500 gap-2 items-center grid justify-center">
             <img 
-            src={"https://scontent.fabv2-1.fna.fbcdn.net/v/t39.30808-6/300437585_441202358066745_1455545713973297976_n.png?stp=dst-png&cstp=mx435x435&ctp=s435x435&_nc_cat=111&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEN4SiqLPoAw6CJiq6cO-_XZJ9ypd1_n8Jkn3Kl3X-fwuqQln6_gvogFNObKwygGBE&_nc_ohc=fAjvpfZ_esYQ7kNvwGYXOIQ&_nc_oc=Ado_gPjSYvDVqI_LL_AfID9SGBCVesCP5Qv8TtO3HwsFAfo0tESnU-tqVTGoQQFvwOg&_nc_zt=23&_nc_ht=scontent.fabv2-1.fna&_nc_gid=Pd6f1iqk-7TArfVkOVieRg&_nc_ss=7b2a8&oh=00_AQOj-Tmp5dZZHhwAqEsJ3kQjagvH5xQo4me4yp6UFF0oNA&oe=6AE2808F"}
-            className='h-[30px] w-[30px] rounded-full overflow-hidden m-auto mt-3'
+            src={"https://raw.githubusercontent.com/marshalsoft/my-portfolio/refs/heads/main/app/assets/logo.png"}
+            className='h-[30px] w-[30px] rounded-full bg-transparent overflow-hidden m-auto mt-3'
             />
            <span className='m-auto'>Powered by Marshalsoft
            </span>
