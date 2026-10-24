@@ -702,7 +702,7 @@ useEffect(()=>{
               type="submit" 
               disabled={loading}
               className="w-full gap-2 flex items-center justify-center py-4 bg-[#3d472a] hover:bg-[#1a2012] text-white font-bold uppercase tracking-widest text-xs rounded-xl transition-all shadow-lg cursor-pointer">
-                {loading?<LoadingSpinner size='md' />:<span>Submit Registration</span>}
+                {loading?<LoadingSpinner size='md' color='text-white' label='' />:<span>Submit Registration</span>}
               </button>
             </form>
           ) : (
@@ -849,7 +849,7 @@ useEffect(()=>{
 }
 
 
-const LoadingSpinner = ({ size = 'md', color = 'text-blue-600', label = 'Loading...' }) => {
+const LoadingSpinner = ({ size = 'md', color = 'text-blue-600', label = '' }) => {
   // Size mapping
   const sizeClasses:any = {
     sm: 'w-4 h-4 border-2',
@@ -858,11 +858,11 @@ const LoadingSpinner = ({ size = 'md', color = 'text-blue-600', label = 'Loading
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-2 p-4" role="status">
+    <div className="flex flex-col items-center justify-center gap-2 " role="status">
       <div
         className={`animate-spin rounded-full border-solid border-current border-r-transparent ${sizeClasses[size] || sizeClasses.md} ${color}`}
       />
-      {label && <span className="text-sm font-medium text-gray-600">{label}</span>}
+      {label && <span className={`text-sm font-medium ${color}`}>{label}</span>}
     </div>
   );
 };
