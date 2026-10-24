@@ -251,7 +251,7 @@ useEffect(()=>{
   setPassId(bbPass);
 },[])
 
-const url =`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://${window.location.host+"/"+passId}`
+
   return (
     <div className="font-sans bg-[#fdfbf7] text-slate-800 antialiased selection:bg-[#6b7a4a] selection:text-white min-h-screen">
       
@@ -811,7 +811,7 @@ const url =`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https:
             {/* QR Code Container */}
             <div className="bg-[#fdfbf7] p-6 rounded-2xl border border-dashed border-[#6b7a4a]/40 inline-block mb-6 shadow-inner">
               <img 
-                src={url} 
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://${window.location.host+"/"+passId}`} 
                 alt="Gate Access QR Code " 
                 className="w-44 h-44 mx-auto rounded-lg shadow-sm"
               />
