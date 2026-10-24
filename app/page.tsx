@@ -182,7 +182,7 @@ export default function App(): React.JSX.Element {
   }, []);
 
 const [passId,setPassId] = useState<string>("");
-
+const [loading,setLoading] = useState<boolean>(false);
   const addToCalendar = (): void => {
     const title: string = encodeURIComponent("Bridget & Brown Wedding Celebration");
     const details: string = encodeURIComponent("Celebration of Love - Bridget & Brown (#BrizzyBrownEverAfter)");
@@ -211,7 +211,7 @@ const [passId,setPassId] = useState<string>("");
 
   const handleRsvpSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    setRsvpSubmitted(true);
+    setLoading(true);
     fetch("https://api.propfindaplus.com/v1.0/bridget-brown",{
       method:"POST",
       body: JSON.stringify(formData),
@@ -219,9 +219,10 @@ const [passId,setPassId] = useState<string>("");
       "Content-Type": "application/json",
       }
     }).then((res)=>res.json()).then((res)=>{
-        setRsvpSubmitted(false);
+        setLoading(false);
         if(res.status && res?.data?.passId)
         {
+          setRsvpSubmitted(true);
           setPassId(res?.data?.passId);
           setShowQrModal(true);
         }
@@ -646,7 +647,9 @@ useEffect(()=>{
           </div>
 
           {!rsvpSubmitted ? (
-            <form onSubmit={handleRsvpSubmit} className="space-y-6">
+            <form 
+            onSubmit={handleRsvpSubmit} 
+            className="space-y-6">
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">First and last name *</label>
                 <input 
@@ -695,8 +698,11 @@ useEffect(()=>{
                 </select>
               </div>
 
-              <button type="submit" className="w-full py-4 bg-[#3d472a] hover:bg-[#1a2012] text-white font-bold uppercase tracking-widest text-xs rounded-xl transition-all shadow-lg cursor-pointer">
-                Submit Registration
+              <button 
+              type="submit" 
+              disabled={loading}
+              className="w-full gap-2 flex items-center justify-center py-4 bg-[#3d472a] hover:bg-[#1a2012] text-white font-bold uppercase tracking-widest text-xs rounded-xl transition-all shadow-lg cursor-pointer">
+                {loading?<LoadingSpinner size='md' />:<span>Submit Registration</span>}
               </button>
             </form>
           ) : (
@@ -841,3 +847,22 @@ useEffect(()=>{
     </div>
   );
 }
+
+
+const LoadingSpinner = ({ size = 'md', color = 'text-blue-600', label = 'Loading...' }) => {
+  // Size mapping
+  const sizeClasses:any = {
+    sm: 'w-4 h-4 border-2',
+    md: 'w-8 h-8 border-3',
+    lg: 'w-12 h-12 border-4'
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center gap-2 p-4" role="status">
+      <div
+        className={`animate-spin rounded-full border-solid border-current border-r-transparent ${sizeClasses[size] || sizeClasses.md} ${color}`}
+      />
+      {label && <span className="text-sm font-medium text-gray-600">{label}</span>}
+    </div>
+  );
+};
