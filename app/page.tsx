@@ -182,7 +182,7 @@ export default function App(): React.JSX.Element {
   }, []);
 
 const [loading,setLoading] = useState<boolean>(false);
-
+const [passId,setPassId] = useState<string>("");
 const Submit = ()=>{
 setLoading(true);
 fetch("https://",{
@@ -229,6 +229,10 @@ fetch("https://",{
     { name: 'Sister Chalya', phone: '+234 703 225 9899', tel: '+2347032259899' },
     { name: 'Eti-Usen', phone: '+234 802 667 2138', tel: '+2348026672138' }
   ];
+
+useEffect(()=>{
+  setPassId(`${Math.floor(100000 + Math.random() * 900000)}`)
+},[])
 
   return (
     <div className="font-sans bg-[#fdfbf7] text-slate-800 antialiased selection:bg-[#6b7a4a] selection:text-white min-h-screen">
@@ -776,7 +780,7 @@ fetch("https://",{
                 className="w-44 h-44 mx-auto rounded-lg shadow-sm"
               />
               <p className="font-mono text-[11px] font-bold text-[#1a2012] mt-3 tracking-wider">
-                PASS-{Math.floor(100000 + Math.random() * 900000)}
+                PASS-{passId}
               </p>
             </div>
 
