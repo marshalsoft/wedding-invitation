@@ -1,6 +1,6 @@
 "use client"
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect, useRef } from 'react';
+import html2canvas from 'html2canvas-pro';
 // Interfaces for Snap/Photo Data
 interface Photo {
   id: number;
@@ -185,10 +185,12 @@ export default function App(): React.JSX.Element {
 
     return () => clearInterval(interval);
   }, []);
-
+const [isGenerating, setIsGenerating] = useState(false);
+const [downloadSuccess, setDownloadSuccess] = useState(false);
+const cardCanvasRef = useRef<HTMLCanvasElement | null>(null);
 const [passId,setPassId] = useState<string>("");
 const [loading,setLoading] = useState<boolean>(false);
-  const addToCalendar = (): void => {
+const addToCalendar = (): void => {
     const title: string = encodeURIComponent("Bridget & Brown Wedding Celebration");
     const details: string = encodeURIComponent("Celebration of Love - Bridget & Brown (#BrizzyBrownEverAfter)");
     const location: string = encodeURIComponent("Venue (To be announced)");
@@ -246,6 +248,40 @@ const [loading,setLoading] = useState<boolean>(false);
     { name: 'Eti-Usen', phone: '+234 802 667 2138', tel: '+2348026672138' }
   ];
 
+const divRef = useRef(null);
+  const [isCapturing, setIsCapturing] = useState(false);
+const downloadAccessCard = async (fileName = 'access-pass.png') => {
+    if (!divRef.current) {
+      console.error('The div reference is not attached.');
+      return;
+    }
+
+    setIsCapturing(true);
+    try {
+      // 1. Convert the div to a canvas
+      const canvas = await html2canvas(divRef.current, {
+        useCORS: true, // Necessary if your div contains cross-origin images
+        allowTaint: true,
+        backgroundColor: null, // Keeps transparency if your div has it
+        scale: 2, // Higher scale for better quality (2x resolution)
+      });
+
+      // 2. Convert the canvas to a data URL (base64 image)
+      const imageDataUrl = canvas.toDataURL('image/png', 1.0);
+
+      // 3. Create a temporary anchor element to download the image
+      const link = document.createElement('a');
+      link.href = imageDataUrl;
+      link.download = fileName; // Set the desired file name
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error capturing the div:', error);
+    } finally {
+      setIsCapturing(false);
+    }
+  };
 useEffect(()=>{
   const bbPass = `BB-PASS-${Date.now()}`;   
   setPassId(bbPass);
@@ -301,7 +337,6 @@ useEffect(()=>{
                className="w-full h-full object-cover object-center opacity-40 scale-105" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#1a2012]/70 to-[#1a2012]/92"></div>
         </div>
-
         <div className="relative z-10 px-6 max-w-4xl mx-auto text-white py-12">
           <p className="font-sans text-xs md:text-sm uppercase tracking-[0.3em] text-[#b8c49e] mb-4 font-medium">
             Join Both Our Families In The
@@ -798,7 +833,10 @@ useEffect(()=>{
             >
               <i className="fa-solid fa-xmark"></i>
             </button>
-
+            <div 
+            ref={divRef}
+            className='p-3 rounded-[20px] bg-white'
+            >
             <div className="inline-block px-3 py-1 bg-[#f6f7f2] rounded-full text-[10px] font-semibold uppercase tracking-widest text-[#526037] mb-2">
               Official Pass
             </div>
@@ -821,7 +859,9 @@ useEffect(()=>{
             </div>
 
             {/* Pass Details */}
-            <div className="text-left bg-[#f6f7f2] p-4 rounded-xl space-y-2 text-xs border border-slate-200/80 mb-6">
+            <div 
+            
+            className="text-left bg-[#f6f7f2] p-4 rounded-xl space-y-2 text-xs border border-slate-200/80 mb-6">
               <div className="flex justify-between">
                 <span className="text-slate-500 font-medium">Guest Name:</span>
                 <span className="font-bold text-slate-800">{formData.name || 'Valued Guest'}</span>
@@ -839,20 +879,11 @@ useEffect(()=>{
                 <span className="font-bold text-slate-800">Dec 5, 2026</span>
               </div>
             </div>
-
+            </div>
             <div className="flex flex-col gap-2">
               <button 
                 onClick={() => {
-                  // const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(
-                  //   `GATE-PASS:${formData.name || 'GUEST'}|ATTENDING:${formData.attending}|GUESTS:${formData.guestCount}|WEDDING:Bridget&Brown-2026`
-                  // )}`;
-                  // const link = document.createElement('a');
-                  // link.href = qrUrl;
-                  // link.download = `Gate_Access_Pass_${(formData.name || 'Guest').replace(/\s+/g, '_')}.png`;
-                  // link.target = '_blank';
-                  // document.body.appendChild(link);
-                  // link.click();
-                  // document.body.removeChild(link);
+                  downloadAccessCard(`${passId}.png`);
                 }}
                 className="w-full py-3 bg-[#3d472a] hover:bg-[#1a2012] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
               >
