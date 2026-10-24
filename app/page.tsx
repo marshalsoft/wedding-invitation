@@ -15,6 +15,7 @@ interface FormData {
   name: string;
   attending: 'attending' | 'absent' | 'undecided';
   guestCount: 'couple' | 'family' | 'friend';
+  mobile:string;
 }
 
 // Interfaces for Countdown Timer
@@ -39,6 +40,7 @@ import px4 from "./assets/pre-wedding/4.jpeg";
 import px5 from "./assets/pre-wedding/5.jpeg";
 import px6 from "./assets/pre-wedding/6.jpeg";
 import px7 from "./assets/pre-wedding/7.jpeg";
+import PhoneInput from './components/PhoneInput';
 
 export default function App(): React.JSX.Element {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -50,7 +52,8 @@ export default function App(): React.JSX.Element {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     attending: 'attending',
-    guestCount: 'couple'
+    guestCount: 'couple',
+    mobile:''
   });
 
   // Photo Gallery / Snap Gallery State
@@ -150,7 +153,9 @@ export default function App(): React.JSX.Element {
       setLightboxIndex((lightboxIndex - 1 + filteredPhotos.length) % filteredPhotos.length);
     }
   };
-
+   const [iso2, setIso2] = useState('US');
+   const [dialCode, setDialCode] = useState('+1');
+  const [number, setNumber] = useState('');
   // Countdown Timer State
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0, isMarried: false });
 
@@ -212,9 +217,13 @@ const [loading,setLoading] = useState<boolean>(false);
   const handleRsvpSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setLoading(true);
+    // if(formData.mobile.test())
+    // {
+
+    // }
     fetch("https://api.propfindaplus.com/v1.0/bridget-brown",{
       method:"POST",
-      body: JSON.stringify(formData),
+      body: JSON.stringify({...formData,mobile:`${dialCode}${parseInt(formData.mobile)}`}),
       headers: {
       "Content-Type": "application/json",
       }
@@ -661,7 +670,22 @@ useEffect(()=>{
                   className="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:outline-none focus:border-[#6b7a4a] focus:ring-1 focus:ring-[#6b7a4a] transition-all text-sm" 
                 />
               </div>
-
+<div>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">Phone number *</label>
+            <PhoneInput
+              countryIso2={iso2}
+              nationalNumber={number}
+              error={""}
+              label=''
+              required
+              onChange={({ country, nationalNumber, isValid, e164 }) => {
+                setIso2(country.iso2);
+                setDialCode(country.dialCode);
+                setNumber(nationalNumber);
+                setFormData({...formData,mobile:nationalNumber});
+              }}
+            />
+              </div>
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">Will you Join us? *</label>
                 <div className="space-y-3">
