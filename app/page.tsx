@@ -231,8 +231,8 @@ fetch("https://",{
   ];
 
 useEffect(()=>{
-  const tm = new Date();
-  setPassId(`BB-PASS-${tm.getDay()}${tm.getHours()}${tm.getMinutes()}${tm.getMilliseconds()}`)
+  const bbPass = `BB-PASS-${Date.now()}`;   
+  setPassId(bbPass);
 },[])
 
   return (
