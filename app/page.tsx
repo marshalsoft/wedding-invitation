@@ -181,6 +181,17 @@ export default function App(): React.JSX.Element {
     return () => clearInterval(interval);
   }, []);
 
+const [loading,setLoading] = useState<boolean>(false);
+
+const Submit = ()=>{
+setLoading(true);
+fetch("https://",{
+
+}).then((res)=>res.json()).then((res)=>{
+
+})
+}
+
   const addToCalendar = (): void => {
     const title: string = encodeURIComponent("Bridget & Brown Wedding Celebration");
     const details: string = encodeURIComponent("Celebration of Love - Bridget & Brown (#BrizzyBrownEverAfter)");
