@@ -812,7 +812,7 @@ const url =`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https:
             <div className="bg-[#fdfbf7] p-6 rounded-2xl border border-dashed border-[#6b7a4a]/40 inline-block mb-6 shadow-inner">
               <img 
                 src={url} 
-                alt="Gate Access QR Code" 
+                alt="Gate Access QR Code " 
                 className="w-44 h-44 mx-auto rounded-lg shadow-sm"
               />
               <p className="font-mono text-[11px] font-bold text-[#1a2012] mt-3 tracking-wider">
