@@ -668,6 +668,7 @@ useEffect(()=>{
                   required 
                   placeholder="e.g. John Doe"
                   value={formData.name}
+                  maxLength={40}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, name: e.target.value})}
                   className="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:outline-none focus:border-[#6b7a4a] focus:ring-1 focus:ring-[#6b7a4a] transition-all text-sm" 
                 />
@@ -683,7 +684,7 @@ useEffect(()=>{
               onChange={({ country, nationalNumber, isValid, e164 }) => {
                 setIso2(country.iso2);
                 setDialCode(country.dialCode);
-                setNumber(nationalNumber);
+                setNumber(String(parseInt(nationalNumber)));
                 setFormData({...formData,mobile:nationalNumber});
               }}
             />
@@ -809,14 +810,12 @@ useEffect(()=>{
             {/* QR Code Container */}
             <div className="bg-[#fdfbf7] p-6 rounded-2xl border border-dashed border-[#6b7a4a]/40 inline-block mb-6 shadow-inner">
               <img 
-                src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(
-                  `GATE-PASS:${formData.name || 'GUEST'}|ATTENDING:${formData.attending}|GUESTS:${formData.guestCount}|WEDDING:Bridget&Brown-2026`
-                )}`} 
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://bridget-brown.vercel.app/?passId=${passId}`} 
                 alt="Gate Access QR Code" 
                 className="w-44 h-44 mx-auto rounded-lg shadow-sm"
               />
               <p className="font-mono text-[11px] font-bold text-[#1a2012] mt-3 tracking-wider">
-                {passId}
+              {passId}
               </p>
             </div>
 
