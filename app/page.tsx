@@ -223,9 +223,12 @@ const addToCalendar = (): void => {
   const handleRsvpSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setLoading(true);
+    const payload = {...formData,mobile:`${dialCode}${parseInt(formData.mobile)}`,name:`${formData.firstName} ${formData.lastName}`} as any;
+    delete payload.firstName;
+    delete payload.lastName;
     fetch("https://api.propfindaplus.com/v1.0/bridget-brown",{
       method:"POST",
-      body: JSON.stringify({...formData,mobile:`${dialCode}${parseInt(formData.mobile)}`,name:`${formData.firstName} ${formData.lastName}`}),
+      body: JSON.stringify(payload),
       headers: {
       "Content-Type": "application/json",
       }
@@ -670,7 +673,7 @@ function formatName(input:string) {
               <div className="flex items-center justify-between bg-[#1a2012] p-3.5 rounded-xl border border-[#3d472a] mt-3">
                 <span className="font-mono text-xl text-[#b8c49e] font-bold tracking-widest">0128646442</span>
                 <button onClick={() => copyToClipboard('0128646442')} className="text-xs bg-[#6b7a4a] hover:bg-[#526037] text-white px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-1.5 cursor-pointer">
-                  <i className="fa-regular fa-copy"></i> Copy
+                  <i className="fa-regular fa-copy hidden lg:block"></i> Copy
                 </button>
               </div>
             </div>
@@ -833,6 +836,17 @@ function formatName(input:string) {
           <p className="font-['Great_Vibes'] text-3xl text-stone-300 mb-4">Love lives here</p>
           <p className="font-sans font-semibold text-xs tracking-widest uppercase text-[#b8c49e] mb-6">#BrizzyBrownEverAfter</p>
           <p className="text-xs text-stone-500">&copy; 2026 Bridget & Brown. All Rights Reserved.</p>
+          <a 
+          target='_blank'
+          href='https://www.facebook.com/marshalsoft'
+          className="text-xs text-stone-500 gap-2 items-center grid justify-center">
+            <img 
+            src={"https://scontent.fabv2-1.fna.fbcdn.net/v/t39.30808-6/300437585_441202358066745_1455545713973297976_n.png?stp=dst-png&cstp=mx435x435&ctp=s435x435&_nc_cat=111&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEN4SiqLPoAw6CJiq6cO-_XZJ9ypd1_n8Jkn3Kl3X-fwuqQln6_gvogFNObKwygGBE&_nc_ohc=fAjvpfZ_esYQ7kNvwGYXOIQ&_nc_oc=Ado_gPjSYvDVqI_LL_AfID9SGBCVesCP5Qv8TtO3HwsFAfo0tESnU-tqVTGoQQFvwOg&_nc_zt=23&_nc_ht=scontent.fabv2-1.fna&_nc_gid=Pd6f1iqk-7TArfVkOVieRg&_nc_ss=7b2a8&oh=00_AQOj-Tmp5dZZHhwAqEsJ3kQjagvH5xQo4me4yp6UFF0oNA&oe=6AE2808F"}
+            className='h-[30px] w-[30px] rounded-full overflow-hidden m-auto mt-3'
+            />
+           <span className='m-auto'>Powered by Marshalsoft
+           </span>
+           </a>
         </div>
       </footer>
 
