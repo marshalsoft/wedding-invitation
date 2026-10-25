@@ -197,7 +197,7 @@ const [loading,setLoading] = useState<boolean>(false);
 const addToCalendar = (): void => {
     const title: string = encodeURIComponent("Bridget & Brown Wedding Celebration");
     const details: string = encodeURIComponent("Celebration of Love - Bridget & Brown (#BrizzyBrownEverAfter)");
-    const location: string = encodeURIComponent("Venue (To be announced)");
+    const location: string = encodeURIComponent("Merry Makers Event Center 702 Kashim Ibrahim Wy, Wuse 2, Abuja 900288, Federal Capital Territory");
     const startDate: string = "20261205T100000";
     const endDate: string = "20261205T180000";
 
