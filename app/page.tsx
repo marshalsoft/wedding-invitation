@@ -103,27 +103,6 @@ export default function App(): React.JSX.Element {
       caption: 'Cherished Memories',
       category: 'prewedding',
       date: 'May 2026'
-    },
-    {
-      id: 5,
-      url: px6.src,
-      caption: '#BrizzyBrownEverAfter',
-      category: 'prewedding',
-      date: 'Jun 2026'
-    },
-    {
-      id: 6,
-      url: px7.src,
-      caption: 'Walking into Forever',
-      category: 'prewedding',
-      date: 'Jul 2026'
-    },
-    {
-      id: 7,
-      url: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1200&q=80',
-      caption: 'A Celebration of Grace',
-      category: 'candid',
-      date: 'Aug 2026'
     }
   ];
 
@@ -194,10 +173,11 @@ const [downloadSuccess, setDownloadSuccess] = useState(false);
 const cardCanvasRef = useRef<HTMLCanvasElement | null>(null);
 const [passId,setPassId] = useState<string>("");
 const [loading,setLoading] = useState<boolean>(false);
+const venue = "Merry Makers Event Center 702 Kashim Ibrahim Wy, Wuse 2, Abuja 900288, Federal Capital Territory";
 const addToCalendar = (): void => {
     const title: string = encodeURIComponent("Bridget & Brown Wedding Celebration");
     const details: string = encodeURIComponent("Celebration of Love - Bridget & Brown (#BrizzyBrownEverAfter)");
-    const location: string = encodeURIComponent("Merry Makers Event Center 702 Kashim Ibrahim Wy, Wuse 2, Abuja 900288, Federal Capital Territory");
+    const location: string = encodeURIComponent(venue);
     const startDate: string = "20261205T100000";
     const endDate: string = "20261205T180000";
 
@@ -440,12 +420,12 @@ function formatName(input:string) {
 
               <div>
                 <span className="text-[#c4a482] text-xs font-semibold uppercase tracking-widest block mb-1">Venue</span>
-                <p className="font-['Cormorant_Garamond'] text-2xl font-medium text-white italic">Venue (Coming later)</p>
+                <p className="font-['Cormorant_Garamond'] text-2xl font-medium text-white italic">{venue}</p>
                 <p className="text-xs text-stone-400 mt-2">Reception follows at the same venue</p>
               </div>
 
               <div className="pt-4">
-                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-[#3d281d] hover:bg-[#5c4033] text-stone-200 text-xs font-semibold uppercase tracking-wider rounded-full border border-[#c4a482]/30 transition-all">
+                <a href={`https://maps.google.com?search=${String(venue).replace(" ","+")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-[#3d281d] hover:bg-[#5c4033] text-stone-200 text-xs font-semibold uppercase tracking-wider rounded-full border border-[#c4a482]/30 transition-all">
                   <i className="fa-solid fa-map-pin text-[#c4a482]"></i> View Location (Map Link)
                 </a>
               </div>
@@ -533,10 +513,6 @@ function formatName(input:string) {
                     alt={photo.caption} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
                   />
-                  <div className="absolute top-3 right-3 bg-black/50 backdrop-blur-md text-white text-[10px] px-2.5 py-1 rounded-full font-mono">
-                    {photo.date}
-                  </div>
-                  
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1a2012]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <span className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 text-white flex items-center justify-center text-lg">
