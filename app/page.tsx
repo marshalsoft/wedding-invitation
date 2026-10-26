@@ -39,9 +39,6 @@ import px1 from "./assets/pre-wedding/1.jpeg";
 import px2 from "./assets/pre-wedding/2.jpeg";
 import px3 from "./assets/pre-wedding/3.jpeg";
 import px4 from "./assets/pre-wedding/4.jpeg";
-import px5 from "./assets/pre-wedding/5.jpeg";
-import px6 from "./assets/pre-wedding/6.jpeg";
-import px7 from "./assets/pre-wedding/7.jpeg";
 import PhoneInput from './components/PhoneInput';
 
 export default function App(): React.JSX.Element {
@@ -96,13 +93,6 @@ export default function App(): React.JSX.Element {
       caption: 'Hand in Hand, Heart to Heart',
       category: 'prewedding',
       date: 'Apr 2026'
-    },
-    {
-      id: 4,
-      url: px5.src,
-      caption: 'Cherished Memories',
-      category: 'prewedding',
-      date: 'May 2026'
     }
   ];
 
