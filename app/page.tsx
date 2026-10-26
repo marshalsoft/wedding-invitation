@@ -60,11 +60,6 @@ export default function App(): React.JSX.Element {
   // Photo Gallery / Snap Gallery State
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [likes, setLikes] = useState<Record<number, number>>({
-    0: 124, 1: 98, 2: 156, 3: 87, 4: 210, 5: 143, 6: 178, 7: 112
-  });
-  const [userLiked, setUserLiked] = useState<Record<number, boolean>>({});
-
   const photos: Photo[] = [
     {
       id: 0,
@@ -100,14 +95,6 @@ export default function App(): React.JSX.Element {
     ? photos 
     : photos.filter(p => p.category === activeCategory);
 
-  const toggleLike = (e: React.MouseEvent<HTMLButtonElement>, id: number): void => {
-    e.stopPropagation();
-    setLikes(prev => ({
-      ...prev,
-      [id]: userLiked[id] ? (prev[id] || 0) - 1 : (prev[id] || 0) + 1
-    }));
-    setUserLiked(prev => ({ ...prev, [id]: !prev[id] }));
-  };
 
   const openLightbox = (index: number): void => {
     setLightboxIndex(index);
@@ -517,18 +504,6 @@ function formatName(input:string) {
                     <h4 className="font-['Cormorant_Garamond'] text-lg font-bold text-[#1a2012] truncate max-w-[170px]">{photo.caption}</h4>
                     <span className="text-[11px] uppercase tracking-wider text-slate-500 font-medium">#{photo.category}</span>
                   </div>
-                  
-                  <button 
-                    onClick={(e) => toggleLike(e, photo.id)} 
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-colors ${
-                      userLiked[photo.id] 
-                        ? 'bg-rose-50 text-rose-600 border border-rose-200' 
-                        : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'
-                    }`}
-                  >
-                    <i className={`fa-heart ${userLiked[photo.id] ? 'fa-solid text-rose-500' : 'fa-regular'}`}></i>
-                    <span>{likes[photo.id] || 0}</span>
-                  </button>
                 </div>
               </div>
             ))}
@@ -576,25 +551,6 @@ function formatName(input:string) {
               <h3 className="font-['Cormorant_Garamond'] text-2xl md:text-3xl font-bold">
                 {filteredPhotos[lightboxIndex].caption}
               </h3>
-              <div className="flex items-center justify-center gap-4 text-xs font-mono text-stone-300">
-                <span>Snap {lightboxIndex + 1} of {filteredPhotos.length}</span>
-                <span>•</span>
-                <span>{filteredPhotos[lightboxIndex].date}</span>
-              </div>
-
-              <div className="pt-2">
-                <button 
-                  onClick={(e) => toggleLike(e, filteredPhotos[lightboxIndex].id)} 
-                  className={`inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-semibold transition-colors ${
-                    userLiked[filteredPhotos[lightboxIndex].id] 
-                      ? 'bg-rose-600 text-white' 
-                      : 'bg-white/10 hover:bg-white/20 text-white border border-white/30'
-                  }`}
-                >
-                  <i className={`fa-heart ${userLiked[filteredPhotos[lightboxIndex].id] ? 'fa-solid' : 'fa-regular'}`}></i>
-                  <span>{userLiked[filteredPhotos[lightboxIndex].id] ? 'Liked' : 'Like Snap'} ({likes[filteredPhotos[lightboxIndex].id] || 0})</span>
-                </button>
-              </div>
             </div>
           </div>
 
