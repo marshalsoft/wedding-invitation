@@ -370,7 +370,7 @@ function formatName(input:string) {
         <div className="max-w-4xl mx-auto px-6 text-center">
           
           <p className="font-['Cormorant_Garamond'] text-lg md:text-xl text-[#c4a482] mb-2 italic">
-            Together with Mr & Mrs Andrew Machief and Late Deac. & Mrs Alph-Brown Enang
+            Together with Chief and Mrs Andrew Machief (Turakin Shagau) and Late Deac. & Mrs Alph-Brown Enang
           </p>
           <h2 className="font-['Cormorant_Garamond'] text-4xl md:text-6xl font-bold mb-4 uppercase tracking-wide text-white">
             JOIN THE WEDDING PARTY
@@ -387,14 +387,17 @@ function formatName(input:string) {
               </div>
 
               <div className="w-12 h-0.5 bg-[#5c4033] mx-auto"></div>
-
+              <div className="text-[#c4a482] text-xs font-semibold uppercase tracking-widest block mb-1">Solemnization of holy matrimony at the <span className='font-bold text-orange-500'>Love Garden</span> by </div>
+              <div className="w-12 h-0.5 bg-[#5c4033] mx-auto"></div>
               <div>
-                <span className="text-[#c4a482] text-xs font-semibold uppercase tracking-widest block mb-1">Time</span>
+                <div className="text-[#c4a482] text-xs font-semibold uppercase tracking-widest block mb-1">Time</div>
                 <p className="font-['Cormorant_Garamond'] text-2xl font-semibold text-white">10:00 AM</p>
               </div>
 
               <div className="w-12 h-0.5 bg-[#5c4033] mx-auto"></div>
-
+              <div className="text-[#c4a482] text-xs font-semibold uppercase tracking-widest block mb-1">Wedding Party at <span className='font-bold text-orange-500'>Amber Marquee Tent</span></div>
+              <div className="w-12 h-0.5 bg-[#5c4033] mx-auto"></div>
+             <p className="font-['Cormorant_Garamond'] text-2xl font-semibold text-white">2PM Prompt</p>
               <div>
                 <span className="text-[#c4a482] text-xs font-semibold uppercase tracking-widest block mb-1">Venue</span>
                 <p className="font-['Cormorant_Garamond'] text-2xl font-medium text-white italic">{venue}</p>
