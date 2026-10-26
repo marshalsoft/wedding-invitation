@@ -301,10 +301,10 @@ function formatName(input:string) {
       {/* PAGE 1: HERO SECTION */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center text-center overflow-hidden bg-[#1a2012] pt-20">
         <div className="absolute inset-0 z-0">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80" 
+          <img src={px3.src} 
                alt="Wedding Background" 
-               className="w-full h-full object-cover object-center opacity-40 scale-105" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1a2012]/70 to-[#1a2012]/92"></div>
+               className="w-full min-h-screen object-cover object-center opacity-40 scale-105" />
+          <div className="absolute min-h-screen inset-0 bg-gradient-to-b from-[#1a2012]/70 to-[#1a2012]/92"></div>
         </div>
         <div className="relative z-10 px-6 max-w-4xl mx-auto text-white py-12">
           <p className="font-sans text-xs md:text-sm uppercase tracking-[0.3em] text-[#b8c49e] mb-4 font-medium">
@@ -366,9 +366,11 @@ function formatName(input:string) {
       </section>
 
       {/* PAGE 2: ESPRESSO - THE WEDDING PARTY */}
-      <section id="party" className="py-24 bg-[#170e0a] text-stone-100 relative border-t border-[#3d281d]">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          
+      <section id="party"  className="py-24 min-h-screen bg-[#170e0a] text-stone-100 relative border-t border-[#3d281d]">
+             <img src={px1.src} 
+               alt="Wedding Background" 
+               className="w-full h-full -mt-24 object-cover object-center opacity-10 scale-105 absolute" />
+        <div className="w-full h-full mx-auto top-[0px] text-center ">
           <p className="font-['Cormorant_Garamond'] text-lg md:text-xl text-[#c4a482] mb-2 italic">
             Together with Chief and Mrs Andrew Machief (Turakin Shagau) and Late Deac. & Mrs Alph-Brown Enang
           </p>
@@ -439,7 +441,7 @@ function formatName(input:string) {
             </div>
           </div>
 
-          <div className="max-w-2xl mx-auto border-t border-[#3d281d] pt-8">
+          <div className="max-w-2xl  mx-auto border-t border-[#3d281d] pt-8">
             <blockquote className="font-['Cormorant_Garamond'] italic text-lg text-[#c4a482] leading-relaxed">
               "Two are better than one, because they have a good reward for their toil... a threefold cord is not quickly broken.”
             </blockquote>
