@@ -402,7 +402,7 @@ function formatName(input:string) {
               </div>
 
               <div className="pt-4">
-                <a href={`https://maps.google.com?search=${String(venue).replace(" ","+")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-[#3d281d] hover:bg-[#5c4033] text-stone-200 text-xs font-semibold uppercase tracking-wider rounded-full border border-[#c4a482]/30 transition-all">
+                <a href={`https://www.google.com/maps/search/?api=1&query=${String(venue).replace(" ","+")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-[#3d281d] hover:bg-[#5c4033] text-stone-200 text-xs font-semibold uppercase tracking-wider rounded-full border border-[#c4a482]/30 transition-all">
                   <i className="fa-solid fa-map-pin text-[#c4a482]"></i> View Location (Map Link)
                 </a>
               </div>
