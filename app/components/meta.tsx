@@ -3,7 +3,7 @@ import { Suspense } from "react";
 const SCREEN_SHOT = "https://bridget-brown.vercel.app/screenshot.png";
 const DEFAULT_TITLE = "Bridget & Brown - Wedding Invitation";
 const DEFAULT_DESCRIPTION =
-  "Welcome to the party B&B | UrL https://bridget-brown.vercel.app | Register: For Access";
+  "Welcome to the party B&B | Register: For Access";
 
 
 function SiteMetaInner() {
