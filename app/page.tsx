@@ -6,7 +6,7 @@ interface Photo {
   id: number;
   url: string;
   caption: string;
-  category: 'prewedding' | 'couples' | 'candid';
+  category: 'Court Marraige' | 'couples' | 'candid';
   date: string;
 }
 
@@ -65,28 +65,28 @@ export default function App(): React.JSX.Element {
       id: 0,
       url: px1.src,
       caption: 'The Beginning of Our Story',
-      category: 'prewedding',
+      category: 'Court Marraige',
       date: 'Jan 2026'
     },
     {
       id: 1,
       url: px2.src,
       caption: 'Unforgettable Moments & Laughter',
-      category: 'prewedding',
+      category: 'Court Marraige',
       date: 'Feb 2026'
     },
     {
       id: 2,
       url: px4.src,
       caption: 'Golden Hour Together',
-      category: 'prewedding',
+      category: 'Court Marraige',
       date: 'Mar 2026'
     },
     {
       id: 3,
       url: px3.src,
       caption: 'Hand in Hand, Heart to Heart',
-      category: 'prewedding',
+      category: 'Court Marraige',
       date: 'Apr 2026'
     }
   ];
@@ -459,8 +459,8 @@ function formatName(input:string) {
           <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-10">
             {[
               { id: 'all', label: 'All Snaps' },
-              { id: 'prewedding', label: 'Pre-Wedding' },
-              { id: 'candid', label: 'Candids & Moments' }
+              { id: 'Court Marraige', label: 'Court Marraige' },
+              { id: 'prewedding', label: 'Pre-Wedding' }
             ].map(cat => (
               <button
                 key={cat.id}
