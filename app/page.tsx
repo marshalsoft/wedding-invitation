@@ -369,7 +369,7 @@ function formatName(input:string) {
       <section id="party"  className="py-24 min-h-screen bg-[#170e0a] text-stone-100 relative border-t border-[#3d281d]">
              <img src={px1.src} 
                alt="Wedding Background" 
-               className="w-full h-full -mt-24 object-cover object-center opacity-10 scale-105 absolute" />
+               className="w-full h-full mt-[-64px] object-cover object-center opacity-10 scale-105 absolute" />
         <div className="w-full h-full mx-auto top-[0px] text-center ">
           <p className="font-['Cormorant_Garamond'] text-lg md:text-xl text-[#c4a482] mb-2 italic">
             Together with Chief and Mrs Andrew Machief (Turakin Shagau) and Late Deac. & Mrs Alph-Brown Enang
