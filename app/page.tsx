@@ -14,7 +14,7 @@ interface Photo {
 interface FormData {
   name: string;
   attending: 'attending' | 'absent' | 'undecided';
-  guestCount: 'couple' | 'family' | 'friend';
+  guestCount: 'single'|'couple' | 'family' | 'friend';
   mobile:string;
   firstName:string;
   lastName:string;
@@ -51,7 +51,7 @@ export default function App(): React.JSX.Element {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     attending: 'attending',
-    guestCount: 'couple',
+    guestCount: 'single',
     mobile:'',
     firstName:'',
     lastName:''
@@ -575,9 +575,8 @@ function formatName(input:string) {
           
           <h2 className="font-['Cormorant_Garamond'] text-4xl md:text-5xl font-bold mb-4">Gifts</h2>
           <div className="w-16 h-0.5 bg-[#b8c49e] mx-auto mb-8"></div>
-
           <p className="font-['Cormorant_Garamond'] text-xl md:text-2xl text-[#e3e7d7] italic mb-6">
-            "No gifts that replace your presence. Thank you for honoring us."
+            "No gifts can replace your presence. Thank you for honoring us."
           </p>
 
           <div className="bg-[#1a2012] p-8 rounded-3xl border border-[#6b7a4a] shadow-xl max-w-xl mx-auto mb-8 text-left">
@@ -701,6 +700,7 @@ function formatName(input:string) {
                   onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFormData({...formData, guestCount: e.target.value as FormData['guestCount']})}
                   className="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:outline-none focus:border-[#6b7a4a] focus:ring-1 focus:ring-[#6b7a4a] transition-all text-sm bg-white"
                 >
+                  <option value="single">Single</option>
                   <option value="couple">Couple</option>
                   <option value="family">I and my whole family</option>
                   <option value="friend">Me and a friend</option>
