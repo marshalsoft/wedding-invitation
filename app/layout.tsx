@@ -1,6 +1,8 @@
-import type { Metadata } from "next";
+"use client"
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import SiteMeta from "./components/meta";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,10 +14,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Wedding Invitation",
-  description: "Generate Wedding Invitation, Gate Pass and Photo Galleries.",
-};
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
@@ -23,6 +21,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <Suspense fallback={<div>Loading...</div>}>
+          <SiteMeta />
+        </Suspense>
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
