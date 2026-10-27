@@ -308,7 +308,7 @@ function formatName(input:string) {
         </div>
         <div className="relative z-10 px-6 max-w-4xl mx-auto text-white py-12">
           <p className="font-sans text-xs md:text-sm uppercase tracking-[0.3em] text-[#b8c49e] mb-4 font-medium">
-            Join Our Families In The
+          Join Our Families In The
           </p>
           <h2 className="font-['Cormorant_Garamond'] italic text-2xl md:text-3xl font-light text-stone-200 mb-2">
             Celebration of Love
@@ -425,12 +425,12 @@ function formatName(input:string) {
               </div>
               <div className="bg-[#261810]/60 p-4 rounded-2xl border border-[#3d281d] flex flex-col items-center">
                 <div className="w-12 h-12 rounded-full bg-[#5c4033] border border-stone-600 mb-2 shadow-md"></div>
-                <span className="text-xs font-semibold text-white">Espresso</span>
+                <span className="text-xs font-semibold text-white">Espresso Brown</span>
                 <span className="text-[10px] font-mono text-stone-400">#5C4033</span>
               </div>
               <div className="bg-[#261810]/60 p-4 rounded-2xl border border-[#3d281d] flex flex-col items-center">
                 <div className="w-12 h-12 rounded-full bg-[#c4a482] border border-stone-600 mb-2 shadow-md"></div>
-                <span className="text-xs font-semibold text-white">Brown Nude</span>
+                <span className="text-xs font-semibold text-white">Nude</span>
                 <span className="text-[10px] font-mono text-stone-400">#C4A482</span>
               </div>
               <div className="bg-[#261810]/60 p-4 rounded-2xl border border-[#3d281d] flex flex-col items-center">
