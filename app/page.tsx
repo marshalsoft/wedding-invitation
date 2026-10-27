@@ -308,7 +308,7 @@ function formatName(input:string) {
         </div>
         <div className="relative z-10 px-6 max-w-4xl mx-auto text-white py-12">
           <p className="font-sans text-xs md:text-sm uppercase tracking-[0.3em] text-[#b8c49e] mb-4 font-medium">
-            Join Both Our Families In The
+            Join Our Families In The
           </p>
           <h2 className="font-['Cormorant_Garamond'] italic text-2xl md:text-3xl font-light text-stone-200 mb-2">
             Celebration of Love
